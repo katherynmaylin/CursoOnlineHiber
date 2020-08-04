@@ -55,11 +55,11 @@ public class Main {
 			
 			//MODIFICAR ESTUDIANTE
 			
-			modificarEstudiante(1, "Pilar", "Baque");
+			modificarEstudiante(6, "Del Jesus", "Baque");
 			
 			
 			//ELIMINAR ESTUDIANTE
-			eliminarEstudiante(2);
+			eliminarEstudiante(5);
 			
 			
 			
@@ -107,7 +107,9 @@ public class Main {
 		static void eliminarCurso(int id) {
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
-			session.delete(id);
+			Curso curso =
+					(Curso)session.get(Curso.class,id);
+			session.delete(curso);
 			
 			session.getTransaction().commit();
 			session.close();
@@ -145,10 +147,13 @@ public class Main {
 		static void eliminarEstudiante(int id) {
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
-			session.delete(id);
+			Estudiante estudiante =
+					(Estudiante)session.get(Estudiante.class,id);
+			session.delete(estudiante);
 			
 			session.getTransaction().commit();
 			session.close();
+			
 		}
 		
 		
